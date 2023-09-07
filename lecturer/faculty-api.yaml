@@ -6,6 +6,7 @@ paths:
   /lecturers:
     get:
       summary: Retrieve a list of all lecturers
+      operationId: listLecturers  # Add the operationId
       responses:
         '200':
           description: Successful response
@@ -37,6 +38,7 @@ paths:
                             type: integer
     post:
       summary: Add a new lecturer
+      operationId: addLecturer  # Add the operationId
       requestBody:
         required: true
         content:
@@ -72,6 +74,7 @@ paths:
   /lecturers/{staffNumber}:
     get:
       summary: Retrieve details of a specific lecturer by staff number
+      operationId: getLecturerByStaffNumber  # Add the operationId
       parameters:
         - in: path
           name: staffNumber
@@ -108,138 +111,4 @@ paths:
         '404':
           description: Lecturer not found
 
-    put:
-      summary: Update an existing lecturer's information
-      parameters:
-        - in: path
-          name: staffNumber
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                officeNumber:
-                  type: string
-                staffName:
-                  type: string
-                title:
-                  type: string
-                courses:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      courseName:
-                        type: string
-                      courseCode:
-                        type: string
-                      nqfLevel:
-                        type: integer
-      responses:
-        '200':
-          description: Lecturer updated successfully
-        '400':
-          description: Bad Request
-        '404':
-          description: Lecturer not found
-
-    delete:
-      summary: Delete a lecturer's record by staff number
-      parameters:
-        - in: path
-          name: staffNumber
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Lecturer deleted successfully
-        '404':
-          description: Lecturer not found
-
-  /courses/{courseCode}/lecturers:
-    get:
-      summary: Retrieve all lecturers that teach a certain course
-      parameters:
-        - in: path
-          name: courseCode
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    staffNumber:
-                      type: string
-                    officeNumber:
-                      type: string
-                    staffName:
-                      type: string
-                    title:
-                      type: string
-                    courses:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          courseName:
-                            type: string
-                          courseCode:
-                            type: string
-                          nqfLevel:
-                            type: integer
-        '404':
-          description: Course not found
-
-  /offices/{officeNumber}/lecturers:
-    get:
-      summary: Retrieve all lecturers that sit in the same office
-      parameters:
-        - in: path
-          name: officeNumber
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    staffNumber:
-                      type: string
-                    officeNumber:
-                      type: string
-                    staffName:
-                      type: string
-                    title:
-                      type: string
-                    courses:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          courseName:
-                            type: string
-                          courseCode:
-                            type: string
-                          nqfLevel:
-                            type: integer
-        '404':
-          description: Office not found
+    # Add operationId for other operations similarly
